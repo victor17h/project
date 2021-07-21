@@ -1,6 +1,6 @@
 import tkinter
 import random
-sadas
+
 root = tkinter.Tk()
 root.title("Rock, Paper, Scissors")
 root.geometry("400x500")
