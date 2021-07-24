@@ -30,6 +30,35 @@ def calculate():
             result = "error"
             expression = ""
     label_result.config(text=result)
+    expression = str(result)
+
+
+# Create key bindings
+def key_handler(event):
+    print(event.keysym)
+    global  expression
+    if event.keysym in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"):
+        add(event.keysym)
+    elif event.keysym == "plus":
+        add("+")
+    elif event.keysym == "minus":
+        add("-")
+    elif event.keysym == "asterisk":
+        add("*")
+    elif event.keysym == "slash":
+        add("/")
+    elif event.keysym in ("c", "C"):
+        clear()
+    elif event.keysym == "period":
+        add(".")
+    elif event.keysym in ("Return", "equal"):
+        calculate()
+    elif event.keysym == "BackSpace":
+        expression = expression[0:len(expression)-1]
+        label_result.config(text=expression)
+
+        
+root.bind("<Key>", key_handler)     # No need for function parenthesis, bind by default sends an event
 
 # Create GUI
 
@@ -43,7 +72,7 @@ button_1.grid(row=1, column=0)
 button_2 = tkinter.Button(root, text="2", command=lambda: add("2"))
 button_2.grid(row=1, column=1)
 
-button_3 = tkinter.Button(root, text="2", command=lambda: add("3"))
+button_3 = tkinter.Button(root, text="3", command=lambda: add("3"))
 button_3.grid(row=1, column=2)
 
 button_divide = tkinter.Button(root, text="/", command=lambda: add("/"))
